@@ -6,7 +6,7 @@ BEGIN
 		    APEX_UTIL.create_user(
 			        p_user_name       => 'ADMIN',
 					        p_email_address   => 'don.raikes@oracle.com',
-							        p_web_password    => 'Welcome#1',
+							        p_web_password    => 'Welcome1',
 									        p_developer_privs => 'ADMIN' );
 											        
 													    APEX_UTIL.set_security_group_id( null );
@@ -16,5 +16,5 @@ BEGIN
 
 															--  Configure the ORDS integration
 															connect sys/Welcome#1@orclpdb1 as sysdba
-															@apex_rest_config.sql Welcome#1 Welcome#1
+															@apex_rest_config.sql Welcome1 Welcome1
 															exit

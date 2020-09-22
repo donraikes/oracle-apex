@@ -1,6 +1,6 @@
 #!/bin/bash
 docker run -d --name=apex_20.1 --rm \
-	-e HTTP_PROXY=$HTTP_PROXY \
-	-e $HTTPS_PROXY=$HTTPS_PROXY \
+	-p 1521:1521 \
+	-p 5500:5500 \
 	-v oradata1:/opt/oracle \
 	dnraikes/apex_20.1:latest

@@ -4,7 +4,8 @@
 #	Date:	09/19/2020
 #
 ####################################
-FROM	dnraikes/db19c:latest
+FROM	container-registry.oracle.com/database/enterprise:19.3.0.0
+LABEL	maintainer don.raikes@oracle.com
 
 
 ENV	ORACLE_BASE=/opt/oracle \
@@ -22,7 +23,7 @@ RUN	yum install -y unzip
 #	Copy the apex zip file.
 #--------------------------------------
 USER	oracle
-COPY	apex_20.1.zip /home/oracle/
+COPY	./software/apex_20.1.zip /home/oracle/
 
 #--------------------------------------
 #	Unzip and prepare for installation:
@@ -31,10 +32,8 @@ WORKDIR	/home/oracle
 RUN	unzip apex_20.1.zip 
 
 COPY ./sql/* /home/oracle/apex/
-COPY	./scripts/* /home/oracle/
-
 USER	root
-RUN	chmod 777 install-apex.sh && \
-	chown oracle:dba install-apex.sh
+run	chown -R oracle:dba /home/oracle/apex
 
 USER	oracle
+EXPOSE	1521 5500
